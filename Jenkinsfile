@@ -17,7 +17,7 @@ pipeline{
           withCredentials([usernamePassword(credentialsId:'firstimagedocker',passwordVariable:"pass",usernameVariable:"user")])
           {
             sh 'docker build -t firstimagedocker:2 .'
-            sh 'docker login -u $user -p $pass'
+            sh 'echo $pass | docker login -u $user --password-stdin'
             sh 'docker tag firstimagedocker:2 firstimagedocker:2'
             sh 'docker push abderraoufjs/firstimagedocker'
           }
