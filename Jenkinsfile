@@ -1,5 +1,8 @@
 pipeline{
   agent any
+   environment {
+        DOCKER_CONFIG = '/var/jenkins_home/.docker'
+    }
   stages{
     stage('build'){
       steps{
@@ -18,7 +21,7 @@ pipeline{
             sh 'docker build -t firstimagedocker:2 .'
             sh 'docker login -u $user -p $pass'
             sh 'docker tag firstimagedocker:2 firstimagedocker:2'
-            sh 'docker push abderraoufjs/firstimagedocker'
+            sh 'DOCKER_CONFIG=${DOCKER_CONFIG} docker push abderraoufjs/firstimagedocker'
           }
         }
       }
