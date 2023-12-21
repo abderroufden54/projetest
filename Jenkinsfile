@@ -4,7 +4,7 @@ pipeline{
     stage('build'){
       steps{
         script{
-          npm ci()
+          sh 'npm install'
           echo "builded"
         }
       }
