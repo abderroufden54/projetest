@@ -17,7 +17,7 @@ pipeline {
           sh 'npm install'
           withCredentials([usernamePassword(credentialsId: 'firstimagedocker', passwordVariable: "pass", usernameVariable: "user")]) {
             sh 'docker build -t firstimagedocker:2 .'
-            sh "echo \$pass | docker login -u \$user --password-stdin"
+            sh "echo \$pass | docker login -u \$user --password-stdin || true"
             sh 'docker tag firstimagedocker:2 abderraoufjs/firstimagedocker:2'
             sh 'docker push abderraoufjs/firstimagedocker'
           }
