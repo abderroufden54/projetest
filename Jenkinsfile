@@ -4,6 +4,7 @@ pipeline{
     stage('build'){
       steps{
         script{
+          npm install
           echo "builded"
         }
       }
